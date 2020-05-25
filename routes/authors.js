@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 
 })
 
-// New Author Route // Första get funktion som routern hämtar, ev. använd next()
+// New Author Route // Första get funktion som routern hämtar, ev. använd next() ifall den inte placeras överst.
 router.get('/new', (req, res) => {
     res.render('authors/new', { author: new Author() })
 })
@@ -32,8 +32,7 @@ router.post('/', async (req, res) => {
     })
     try {
         const newAuthor = await author.save()
-        //res.redirect(`authors/${newAuthor.id}`)
-        res.redirect('authors')
+        res.redirect(`authors/${newAuthor.id}`)
     } catch {
         res.render('authors/new', {
             author: author,
